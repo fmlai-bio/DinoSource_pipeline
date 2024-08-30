@@ -23,9 +23,6 @@ samtools index -@ ${nthread} 02STAR/${fastq}.sort.bam
 echo "bam2bw"
 bamCoverage -b 02STAR/${fastq}.sort.bam -p 12 -o 02STAR/${fastq}.bam.bw --binSize 10 --normalizeUsing RPGC --effectiveGenomeSize 1258288479
 
-echo "stringtie start"
-stringtie 02STAR/${fastq}.sort.bam -e -p ${nthread} -o ./03stringtie/${fastq}_transcript.gtf -G ${gtf}
-
 
 
 #qsub
