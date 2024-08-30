@@ -11,6 +11,7 @@
 # DinoSource-pipeline
 ### The DinoSource pipeline have following dependencies :
 * [Python (3.8.8) and Anaconda](https://www.anaconda.com/) for creating a needed environment.
+* [TrimGalore(0.6.10)](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) for fastq data clean.
 * [samtools (>1.9)](http://www.htslib.org/download/) for processing alignment results 
 * [pairtools (v1.0.2)](https://github.com/open2c/pairtools) for processing sequencing data from a Hi-C experiment
 * [3DMax (v1.0)](https://github.com/BDM-Lab/3DMax) for 3D structure reconstructing
