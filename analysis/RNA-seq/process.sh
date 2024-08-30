@@ -15,14 +15,6 @@ fastp -w ${nthread} -i 00raw_data/${fastq}_1.fq.gz -I 00raw_data/${fastq}_2.fq.g
 echo "hisat2 start"
 hisat2 -p ${nthread} -x $hisat2_index -1 $work_dir/01fastp_clean/${fastq}_1.fastq_clean.gz -2 $work_dir/01fastp_clean/${fastq}_2.fastq_clean.gz |samtools view -hbS > $work_dir/02hisat2_results/${fastq}.bam
 
-#test
-hisat2 -p 1 -x $hisat2_index -1 00raw_data/${fastq}_1.fq.gz -2 00raw_data/${fastq}_2.fq.gz |samtools view -hbS 1> test.bam  2> 1.txt   #不行
-
-fastp -w 1 -i ${fastq}_1.fq.gz -I ${fastq}_2.fq.gz -o ${fastq}_1.fastq_clean.gz -O ${fastq}_2.fastq_clean.gz -h ${fastq}.fastp.html -j ${fastq}.fastp.json &> ${fastq}.fastp.log 
-
-fastp -w 1 -i ${fastq}_1.fq.gz -I ${fastq}_2.fq.gz -o ${fastq}_1.fastq_clean.gz -O ${fastq}_2.fastq_clean.gz -h ${fastq}.fastp.html -j ${fastq}.fastp.json 
-#test end
-
 echo "samtools start"
 samtools flagstat -@ ${nthread} $work_dir/02hisat2_results/${fastq}.bam > ./02hisat2_results/${fastq}.bam.stats
 samtools sort ./02hisat2_results/${fastq}.bam -@ ${nthread} -o ./02hisat2_results/${fastq}.sort.bam
