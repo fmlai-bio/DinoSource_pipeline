@@ -24,7 +24,7 @@
 * [fastp (v0.20.0)](https://github.com/OpenGene/fastp) providing fast all-in-one preprocessing (QC/adapters/trimming/filtering/splitting/merging...) for FastQ files.
 * [BatMeth2 (v2.01)](https://github.com/GuoliangLi-HZAU/BatMeth2) for Bisulfite DNA Methylation Data Analysis with Indel-sensitive Mapping
 * [HiGlass Browser (v1.11)](https://docs.higlass.io/)
-* [WashU epigenome browser (v54.0.2)](http://epigenomegateway.wustl.edu/)
+* [WashU epigenome browser (v54.0.4)](http://epigenomegateway.wustl.edu/)
 ## Cite us
 
         
