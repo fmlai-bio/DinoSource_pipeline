@@ -7,7 +7,7 @@
 [Contact with us](http://glab.hzau.edu.cn/dinosource/aboutus/contact)
 
 ## What is DinoSource?
-  Here, we completed the genome assembly of Amphidinium carterae using PcaBio HiFi long reads and Hi-C error correction, annotating 41,274 genes based on Iso-seq, with 43 chromosomes. We have aggregated 20 publicly available dinoflagellate genomes and integrated data from various omics fields (including epigenomics, 3D genomics, transcriptomics, proteomics, and 695 datasets), providing a systematic and comprehensive perspective for understanding the biological mechanisms of dinoflagellates. Additionally, it offers a suite of comprehensive analytical tools to explore functional genes related to evolutionary biology or biological control.<br>
+  Here, we completed the genome assembly of Amphidinium carterae using PcaBio HiFi long reads and Hi-C error correction, annotating 41,274 genes based on Iso-seq, with 43 chromosomes. We have aggregated 21 publicly available dinoflagellate genomes and integrated data from various omics fields (including epigenomics, 3D genomics, transcriptomics, proteomics, and 695 datasets), providing a systematic and comprehensive perspective for understanding the biological mechanisms of dinoflagellates. Additionally, it offers a suite of comprehensive analytical tools to explore functional genes related to evolutionary biology or biological control.<br>
 # DinoSource-pipeline
 ### The DinoSource pipeline have following dependencies :
 * [Python (3.8.8) and Anaconda](https://www.anaconda.com/) for creating a needed environment.
