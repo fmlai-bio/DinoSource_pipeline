@@ -3,26 +3,28 @@
 vim run.sh
 work_dir="/public/home/xxx/data/RNA-seq/Ac-N"
 genome="/public/home/xxx/data/Acgenome/Ac.v1.genome.fa"
-hisat2_index="/public/home/xxx/data/Acgenome/hisat2_index/Ac.v1.genome"
+STAR_index="/public/home/xxx/data/Acgenome/star_index/Ac.v1.genome"
 gtf="/public/home/xxx/data/Acgenome/Amphidinium_carterae.v2.representative.gtf"
 nthread=12
 fastq=$1
 
 cd ${work_dir}
-echo "fastp start"
-fastp -w ${nthread} -i 00raw_data/${fastq}_1.fq.gz -I 00raw_data/${fastq}_2.fq.gz -o 01fastp_clean/${fastq}_1.fastq_clean.gz -O 01fastp_clean/${fastq}_2.fastq_clean.gz -h 01fastp_clean/${fastq}.fastp.html -j 01fastp_clean/${fastq}.fastp.json 2>&1 | tee ${fastq}.fastp.log 
+echo "trim_galore start"
+trim_galore -q 25 --phred33 --fastqc --stringency 3 --length 20 -e 0.1 --paired --gzip -o ./01trim_galore  00raw_data/${fastq}_1.fastq.gz 00raw_data/${fastq}_2.fastq.gz
 
-echo "hisat2 start"
-hisat2 -p ${nthread} -x $hisat2_index -1 $work_dir/01fastp_clean/${fastq}_1.fastq_clean.gz -2 $work_dir/01fastp_clean/${fastq}_2.fastq_clean.gz |samtools view -hbS > $work_dir/02hisat2_results/${fastq}.bam
+echo "STAR start"
+STAR --runThreadN ${nthread} --genomeDir ${STAR_index} --readFilesIn 01trim_galore/${fastq}_1_val_1.fq.gz 01trim_galore/${fastq}_2_val_2.fq.gz --readFilesCommand zcat --sjdbGTFfile ${gtf} --sjdbOverhang 100 --outFileNamePrefix 02STAR/${fastq}. --outSAMtype BAM SortedByCoordinate --quantMode TranscriptomeSAM GeneCounts
 
 echo "samtools start"
-samtools flagstat -@ ${nthread} $work_dir/02hisat2_results/${fastq}.bam > ./02hisat2_results/${fastq}.bam.stats
-samtools sort ./02hisat2_results/${fastq}.bam -@ ${nthread} -o ./02hisat2_results/${fastq}.sort.bam
-samtools index -@ ${nthread} ./02hisat2_results/${fastq}.sort.bam
+samtools flagstat -@ ${nthread}  02STAR/${fastq}.Aligned.sortedByCoord.out.bam > 02STAR/${fastq}.Aligned.sortedByCoord.out.bam.stats
+samtools sort 02STAR/${fastq}.Aligned.sortedByCoord.out.bam -@ ${nthread} -o 02STAR/${fastq}.sort.bam
+samtools index -@ ${nthread} 02STAR/${fastq}.sort.bam
 
+echo "bam2bw"
+bamCoverage -b 02STAR/${fastq}.sort.bam -p 12 -o 02STAR/${fastq}.bam.bw --binSize 10 --normalizeUsing RPGC --effectiveGenomeSize 1258288479
 
 echo "stringtie start"
-stringtie 02hisat2_results/${fastq}.sort.bam -e -p ${nthread} -o ./03stringtie/${fastq}_transcript.gtf -G ${gtf}
+stringtie 02STAR/${fastq}.sort.bam -e -p ${nthread} -o ./03stringtie/${fastq}_transcript.gtf -G ${gtf}
 
 
 
