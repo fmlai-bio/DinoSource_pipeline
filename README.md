@@ -1,6 +1,6 @@
 # DinoSource: a comprehensive database of dinoflagellate genomic resources
 
-![image](https://github.com/versarchey/AraENCODE-pipeline/blob/main/main.png)
+![image](https://github.com/fmlai-bio/DinoSource_pipeline/blob/main/DinoSource.png)
 ## AraENCODE
 [AraENCODE website](http://glab.hzau.edu.cn/AraENCODE/) <br>
 [AraENCODE tutorial](http://glab.hzau.edu.cn/AraENCODE/pages/tutorial.html) <br>
