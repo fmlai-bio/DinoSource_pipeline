@@ -1,6 +1,6 @@
 # DinoSource: a comprehensive database of dinoflagellate genomic resources
 
-![image]
+![image](https://github.com/fmlai-bio/DinoSource_pipeline/blob/main/DinoSource.png)
 ## DinoSource
 [DinoSource website](http://glab.hzau.edu.cn/dinosource) <br>
 [DinoSource tutorial](http://glab.hzau.edu.cn/dinosource/tutorial) <br>
