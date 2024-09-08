@@ -103,8 +103,10 @@ des_func <- function(targets,lo2FCThreshold,padjThreshold,outputFile){
   colnames(gene1) <- "significance"
 
   resdata <- cbind(y$genes,y$counts,et$table,gene1)
-  resdata$significance <- ifelse(resdata$significance == 1, "up", ifelse(resdata$significance == -1, "down", "none"))
-  
+  # resdata$significance <- ifelse(resdata$significance == 1, "up", ifelse(resdata$significance == -1, "down", "none"))
+  resdata[which(resdata$logFC >= lo2FCThreshold & resdata$PValue < padjThreshold),'significance'] <- 'up'
+  resdata[which(resdata$logFC <= -lo2FCThreshold & resdata$PValue < padjThreshold),'significance'] <- 'down'
+  resdata[which(abs(resdata$logFC) <= lo2FCThreshold | resdata$PValue >= padjThreshold),'significance'] <- 'none'  
 
   result <- result <- resdata[, c("genes", "logFC", "logCPM",'PValue','significance')]
   colnames(result) <- c("Gene","log2FoldChange","logCPM","Pvalue","significance")
