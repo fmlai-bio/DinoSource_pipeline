@@ -47,5 +47,13 @@ cat macs2_inputfile.txt |while read a b;do echo "bash /public/home/xxx/data/DIP-
 
 
 三、calculate the FRIP/NSC/RSC metric
+frip:
+cut -f1-3 ../Acart-5hmU-BAM/macs2/Amph-dip-1_peaks.narrowPeak | sort -k1,1 -k2,2n -k3,3n | uniq  | intersectBed -a ../Acart-5hmU-BAM/bw/Amph-dip-1.sort2.bam -b - -c -f 0.10 -bed | awk '{a+=$NF; b++}END{print a,b,a/b}' - > Amph-dip-1.FRiP.txt &
+
+NSC RSC
+Rscript /public/home/fmlai/software/phantompeakqualtools-master/run_spp.R -c=../Acart-5hmU-BAM/picard/Amph-dip-1_picard.rmdup.bam -rf -p=10 -savp=./Amph-dip-1.ncs.rcs.plot.pdf -out=./Amph-dip-1_cc.score.txt 
+
+# NSC 输出文件的倒数第三列
+# RSC 输出文件的倒数第二列
 
 
