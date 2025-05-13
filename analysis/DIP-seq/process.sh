@@ -43,3 +43,9 @@ macs2 callpeak -t 03picard/${treat}_picard.rmdup.bam -c 03picard/${control}_pica
 
 #qsub
 cat macs2_inputfile.txt |while read a b;do echo "bash /public/home/xxx/data/DIP-seq/test_script_20240704/macs2.sh $a $b"|qsub -l nodes=1:ppn=12 -N ${b}_macs2 -d ./logs -j eo;done
+
+
+
+三、calculate the FRIP/NSC/RSC metric
+
+
