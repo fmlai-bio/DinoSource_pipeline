@@ -30,7 +30,12 @@ DinoSource offers powerful tools for researchers to deeply understand the genomi
 * [HiGlass Browser (v1.11)](https://docs.higlass.io/)
 * [WashU epigenome browser (v54.0.4)](http://epigenomegateway.wustl.edu/)
 ## Cite us
-
+Lai F, Li C, Zhang Y, Li Y, Wang Y, Zhou Q, Fang Y, Chen H, Li G. DinoSource: a comprehensive database of dinoflagellate genomic resources. Plant Biotechnol J. 2025 March. 
+https://doi.org/10.1111/pbi.70054
+        
+        
+        
+        
         
 
 ## Lab Homepage
